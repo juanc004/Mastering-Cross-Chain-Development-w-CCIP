@@ -16,12 +16,19 @@ clean:
 	@echo "Cleaning the project..."
 	forge clean
 
-# Remove Git submodules and libraries
+# Remove Git submodules and local libraries/dependencies
 remove:
 	@echo "Removing submodules and libraries..."
 	git submodule deinit -f --all && \
 	rm -rf .git/modules/* && \
 	rm -rf lib
+	rm -rf node_modules
+
+# Install project dependencies
+install:
+	@echo "Installing project dependencies..."
+	npm i @chainlink/contracts-ccip --save-dev
+	npm i @chainlink/contracts --save-dev 
 
 # Update project dependencies to latest versions
 update:
