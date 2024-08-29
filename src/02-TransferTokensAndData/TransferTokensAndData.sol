@@ -1,2 +1,4 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 
+pragma solidity 0.8.19;
+
+contract TransferTokensAndData {}
