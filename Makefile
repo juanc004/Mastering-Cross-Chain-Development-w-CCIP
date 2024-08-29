@@ -5,7 +5,8 @@
 .PHONY: all test clean deploy fund help install snapshot format 
 
 # Contract and network-specific variables
-CCIPBNM_CONTRACT_ADDRESS=0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05
+CCIPBNM_SEPOLIA_CONTRACT_ADDRESS=0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05
+CCIPBNM_FUJI_CONTRACT_ADDRESS=0xD21341536c5cF5EB1bcb58f6723cE26e8D8E90e4
 
 # Clean, install dependencies, update, and build the project
 all: clean remove install update build
@@ -47,6 +48,10 @@ format:
 	@echo "Formatting codebase..."
 	forge fmt
 
-dripFunction:
-	@echo "minting CCIP-BnM testnet token..."
-	@cast send $(CCIPBNM_CONTRACT_ADDRESS) "drip(address)" $(PUBLIC_ADDRESS) --rpc-url $(RPC_URL) --private-key $(PRIVATE_KEY)
+dripSepolia:
+	@echo "minting CCIP-BnM testnet tokens on sepolia..."
+	@cast send $(CCIPBNM_SEPOLIA_CONTRACT_ADDRESS) "drip(address)" $(PUBLIC_ADDRESS) --rpc-url $(RPC_URL) --private-key $(PRIVATE_KEY)
+
+dripFuji:
+	@echo "minting CCIP-BnM testnet token on fuji..."
+	@cast send $(CCIPBNM_FUJI_CONTRACT_ADDRESS) "drip(address)" $(PUBLIC_ADDRESS) --rpc-url $(FUJI_RPC_URL) --private-key $(PRIVATE_KEY)
